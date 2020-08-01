@@ -22,8 +22,8 @@ const unrelaxJSON = string => {
 const ErdSchema = () => {
     // erBaseName = 'nfldb'
     // erBaseName = 'simple'
-    erBaseName = 'politiebureaus'
-    // erBaseName = 'politiebureaus.en'
+    // erBaseName = 'politiebureaus'
+    erBaseName = 'vermisten'
     let template = openJson('templates/template.schema')
     const lines = openEr('database/er/' + erBaseName).split('\n')
 
