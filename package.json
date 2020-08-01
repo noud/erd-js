@@ -1,0 +1,38 @@
+{
+  "name": "erd-js",
+  "description": "Entity-relationship diagram text file to React.js schema json file",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "transform": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/noud/erd-js.git"
+  },
+  "keywords": [
+    "react",
+    "laravel",
+    "schema",
+    "vscode",
+    "node.js",
+    "typescript",
+    "json",
+    "javascript",
+    "erd",
+    "er",
+    "text"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/noud/erd-js/issues"
+  },
+  "homepage": "https://github.com/noud/erd-js",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "lodash": "^4.17.15",
+    "lodash.clonedeep": "^4.5.0"
+  }
+}

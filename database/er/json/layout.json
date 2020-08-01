@@ -1,0 +1,82 @@
+{
+  "name": "%3",
+  "directed": false,
+  "strict": false,
+  "rankdir": "LR",
+  "splines": "spline",
+  "_subgraph_cnt": 0,
+  "objects": [
+    {
+      "_gvid": 0,
+      "name": "Gallery",
+      "label": "<FONT FACE=\"Helvetica\"><TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLPADDING=\"4\" CELLSPACING=\"0\"><TR><TD><B><FONT POINT-SIZE=\"16\">Gallery<\/FONT><\/B><\/TD><\/TR><\/TABLE><\/FONT>",
+      "shape": "plaintext"
+    },
+    {
+      "_gvid": 1,
+      "name": "Shoot",
+      "label": "<FONT FACE=\"Helvetica\"><TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLPADDING=\"4\" CELLSPACING=\"0\"><TR><TD><B><FONT POINT-SIZE=\"16\">Shoot<\/FONT><\/B><\/TD><\/TR><\/TABLE><\/FONT>",
+      "shape": "plaintext"
+    },
+    {
+      "_gvid": 2,
+      "name": "Photo",
+      "label": "<FONT FACE=\"Helvetica\"><TABLE BGCOLOR=\"yellow\" BORDER=\"0\" CELLBORDER=\"1\" CELLPADDING=\"4\" CELLSPACING=\"0\"><TR><TD><B><FONT POINT-SIZE=\"16\">Photo<\/FONT><\/B><\/TD><\/TR><TR><TD BGCOLOR=\"green\" ALIGN=\"LEFT\"><U><FONT>name<\/FONT><\/U><FONT> [string]<\/FONT><\/TD><\/TR><TR><TD ALIGN=\"LEFT\"><FONT>slug<\/FONT><\/TD><\/TR><\/TABLE><\/FONT>",
+      "shape": "plaintext"
+    },
+    {
+      "_gvid": 3,
+      "name": "Galllary_Background",
+      "label": "<FONT FACE=\"Helvetica\"><TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLPADDING=\"4\" CELLSPACING=\"0\"><TR><TD><B><FONT POINT-SIZE=\"16\">Galllary_Background<\/FONT><\/B><\/TD><\/TR><TR><TD ALIGN=\"LEFT\"><U><FONT>name<\/FONT><\/U><\/TD><\/TR><\/TABLE><\/FONT>",
+      "shape": "plaintext"
+    },
+    {
+      "_gvid": 4,
+      "name": "Background",
+      "label": "<FONT FACE=\"Helvetica\"><TABLE BORDER=\"0\" CELLBORDER=\"1\" CELLPADDING=\"4\" CELLSPACING=\"0\"><TR><TD><B><FONT POINT-SIZE=\"16\">Background<\/FONT><\/B><\/TD><\/TR><TR><TD ALIGN=\"LEFT\"><U><FONT>name<\/FONT><\/U><\/TD><\/TR><\/TABLE><\/FONT>",
+      "shape": "plaintext"
+    }
+  ],
+  "edges": [
+    {
+      "_gvid": 0,
+      "tail": 1,
+      "head": 0,
+      "color": "gray50",
+      "headlabel": "<FONT>1<\/FONT>",
+      "minlen": "2",
+      "style": "dashed",
+      "taillabel": "<FONT>0..N<\/FONT>"
+    },
+    {
+      "_gvid": 1,
+      "tail": 2,
+      "head": 1,
+      "color": "gray50",
+      "headlabel": "<FONT>1<\/FONT>",
+      "minlen": "2",
+      "style": "dashed",
+      "taillabel": "<FONT>0..N<\/FONT>"
+    },
+    {
+      "_gvid": 2,
+      "tail": 3,
+      "head": 0,
+      "color": "gray50",
+      "headlabel": "<FONT>1<\/FONT>",
+      "minlen": "2",
+      "style": "dashed",
+      "taillabel": "<FONT>0..N<\/FONT>"
+    },
+    {
+      "_gvid": 3,
+      "tail": 3,
+      "head": 4,
+      "color": "gray50",
+      "headlabel": "<FONT>1<\/FONT>",
+      "minlen": "2",
+      "style": "dashed",
+      "taillabel": "<FONT>0..N<\/FONT>"
+    }
+  ]
+}
