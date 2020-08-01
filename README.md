@@ -1,4 +1,4 @@
-# [ERD (Entity-relationship diagram)]() Transform
+# [ERD (Entity-relationship diagram)]() .er text file to React.js .json file
 
 ## Transformation
 
