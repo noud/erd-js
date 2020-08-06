@@ -10,9 +10,7 @@ The erd files are viewable and maintainable with [ERD Preview](http://github.com
 
 ## Work in progress
 
-* [schema]
-    * [React Admin](http://github.com/marmelab/react-admin) [React] [JavaScript]
-    * [JSON-LD] [Laravel] [PHP]
-* [vuerd]
+* [React Admin](http://github.com/marmelab/react-admin) [React] [JavaScript] [JSON-LD] [Laravel] [PHP]
+* [vuerd-vscode](http://github.com/vuerd/vuerd-vscode)
 
 # [📁 Portfolio](http://github.com/noud/portfolio#portfolio-repositories-index)
