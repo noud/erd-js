@@ -3,6 +3,9 @@
 ## Transformation
 
 Transforms [erd](https://github.com/BurntSushi/erd) files to [Laravel/Lumen schema builder](https://github.com/Agontuk/schema-builder).
+
+## Maintain
+
 The erd files are viewable and maintainable with [ERD Preview](https://github.com/kaishuu0123/vscode-erd) in [Visual Studio Code](https://github.com/microsoft/vscode).
 
 ## Work in progress
