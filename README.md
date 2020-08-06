@@ -1,4 +1,4 @@
-# [ERD (Entity-relationship diagram)](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model) .er text file to Schema React.js .json file
+# [Entity-relationship diagram (ERD)](https://en.wikipedia.org/wiki/Entity%E2%80%93relationship_model) .er text file to Schema React.js .json file
 
 ## Transformation
 
