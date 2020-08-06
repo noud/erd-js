@@ -19,11 +19,13 @@ const unrelaxJSON = string => {
     return JSON.parse(stringJSON)
 };
 
-const ErdSchema = () => {
+const ErdSchema = () => {   // louis darwein
+    // erBaseName = 'opsporingsberichten'
     // erBaseName = 'nfldb'
     // erBaseName = 'simple'
     // erBaseName = 'politiebureaus'
-    erBaseName = 'vermisten'
+    erBaseName = 'wijkagenten'
+    // erBaseName = 'vermisten'
     let template = openJson('templates/template.schema')
     const lines = openEr('database/er/' + erBaseName).split('\n')
 
@@ -84,12 +86,14 @@ const ErdSchema = () => {
                 attributLabel = unrelaxJSON(RelationshipAttributesString[0]).label
             }
 
-            // console.log(RelationshipResult)
+            attributType = null
+
             relationships.push([
                 removeQuotes(RelationshipResult[1]).replace(/^\s+|\s+$/g, ''),  // leading and tailing spaces
                 RelationshipResult[2],
                 RelationshipResult[3],
                 removeQuotes(RelationshipResult[4]).replace(/^\s+|\s+$/g, ''),
+                attributType,
                 attributLabel
             ])
         } else {
@@ -169,6 +173,7 @@ const ErdSchema = () => {
                     if ('+' === line.charAt(0)) {
                         line = line.replace(/\+/g,'')
                         fk = true
+                        attributeType = ''
                     }
 
                     attribute = {
@@ -204,6 +209,21 @@ const ErdSchema = () => {
         }
     });
 
+    relationships.map((relationship, index) => {
+    relationshipsIndex = index
+    schema.map((table, index) => {
+        if (relationship[3] === table.name && relationship[4] === null)  {
+            table.attributes.map((attribute, index) => {
+                if (attribute.autoInc) {
+                    relationships[relationshipsIndex][4] = attribute.type;
+                    // @todo exit
+                    // break;
+                }
+            });
+        }
+    });
+});
+
     // fuzzy part
     relationships.map((relationship, index) => {
         relationshipsIndex = index
@@ -212,19 +232,21 @@ const ErdSchema = () => {
             schemaIndex = index
 
             if (table.name === relationship[0] ) {
-                relationships[relationshipsIndex][5] = table.id
+                relationships[relationshipsIndex][6] = table.id
                 // find fk
                 table.attributes.map((attribute, index) => {
 
                     if ('game' === relationship[0]) {
                         possibleFfNamePart = 'gsis'
                     } else {
-                        possibleFfNamePart = relationship[3].toLowerCase().replace(" ", "_")
+                        // @todo check
+                        // possibleFfNamePart = relationship[3].toLowerCase().replace(" ", "_")
+                        possibleFfNamePart = relationship[3].replace(" ", "_")
                     }
                     possibleFfNamePartId = possibleFfNamePart
 
                     // relation is named in label
-                    if (relationship[4]) {
+                    if (relationship[5]) {
                         possibleFfNamePart = relationship[4]
                     }
 
@@ -232,8 +254,8 @@ const ErdSchema = () => {
                         possibleFfNamePart + '_id' === attribute.name ||
                         possibleFfNamePart === attribute.name
                     ) {
-                        relationships[relationshipsIndex][7] = attribute.id
-                        relationships[relationshipsIndex][8] = attribute.name
+                        relationships[relationshipsIndex][8] = attribute.id
+                        relationships[relationshipsIndex][9] = attribute.name
                         // @todo fill fks
 
                         // @todo done so bad
@@ -256,8 +278,12 @@ const ErdSchema = () => {
                         // schemaIndex = correctedSchemaIndex
                         // corrected
 
-                        schema[schemaIndex].attributes[index].unsigned = true
-                        schema[schemaIndex].attributes[index].type = 'integer'  // @todo should be dependent from fk pointed field
+                        // @todo combined keys
+                        if ('integer' === attribute.type || 'bigint' === attribute.type) {
+                            schema[schemaIndex].attributes[index].unsigned = true
+                        }
+                        schema[schemaIndex].attributes[index].type = relationships[relationshipsIndex][4]
+
                         schema[schemaIndex].attributes[index].foreignKey.on.name = relationship[3]  // <<<<<
                         from = true
                         fromSchemaIndex = schemaIndex
@@ -270,13 +296,13 @@ const ErdSchema = () => {
             if (table.name === relationship[3]){    // @todo 3?
                 to = table.id
                 toRelationshipId = table.id
-                relationships[relationshipsIndex][6] = table.id
+                relationships[relationshipsIndex][7] = table.id
                 // find index
                 table.attributes.map((attribute, index) => {
                     // could be multile index
                     if (attribute.autoInc) {
-                        relationships[relationshipsIndex][9] = attribute.id
-                        relationships[relationshipsIndex][10] = attribute.name
+                        relationships[relationshipsIndex][10] = attribute.id
+                        relationships[relationshipsIndex][11] = attribute.name
                         toAttributeId = attribute.id
                         toAttributeName = attribute.name
                     }
@@ -294,8 +320,8 @@ const ErdSchema = () => {
     relations = []
     relationships.map((relationship, index) => {
         relations.push({
-            source: {columnId: relationship[7], tableId: relationship[5]},
-            target: {columnId: relationship[9], tableId: relationship[6]}
+            source: {columnId: relationship[8], tableId: relationship[6]},
+            target: {columnId: relationship[10], tableId: relationship[7]}
         })
     });
     template.relations = relations
