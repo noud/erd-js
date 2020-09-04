@@ -247,7 +247,7 @@ const ErdSchema = () => {   // louis darwein
 
                     // relation is named in label
                     if (relationship[5]) {
-                        possibleFfNamePart = relationship[4]
+                        possibleFfNamePart = relationship[5]    // 4
                     }
 
                     if (relationship[0] + '_id' === attribute.name ||
