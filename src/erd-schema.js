@@ -23,8 +23,8 @@ const ErdSchema = () => {   // louis darwein
     // erBaseName = 'opsporingsberichten'
     // erBaseName = 'nfldb'
     // erBaseName = 'simple'
-    // erBaseName = 'politiebureaus'
-    erBaseName = 'wijkagenten'
+    erBaseName = 'politiebureaus'
+    // erBaseName = 'wijkagenten'
     // erBaseName = 'vermisten'
     let template = openJson('templates/template.schema')
     const lines = openEr('database/er/' + erBaseName).split('\n')
@@ -48,7 +48,7 @@ const ErdSchema = () => {   // louis darwein
             tableName = removeQuotes(result[0])
 
             tableBgColor = 'table-header-blue'
-            if (-1 !== lines[0].indexOf(' {')) {
+            if (-1 !== line.indexOf(' {')) {
                 let tableAttributesString = line.match(regExpCurlyBrackets)
                 tableBgColorCode = unrelaxJSON(tableAttributesString[0]).bgcolor
                 tableBgColor = 'table-header-'
