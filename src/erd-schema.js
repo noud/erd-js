@@ -247,7 +247,7 @@ const ErdSchema = () => {   // louis darwein
 
                     // relation is named in label
                     if (relationship[5]) {
-                        possibleFfNamePart = relationship[5]    // 4
+                        possibleFfNamePart = relationship[5]
                     }
 
                     if (relationship[0] + '_id' === attribute.name ||
@@ -279,10 +279,11 @@ const ErdSchema = () => {   // louis darwein
                         // corrected
 
                         // @todo combined keys
-                        if ('integer' === attribute.type || 'bigint' === attribute.type) {
+                        foreignKeyPointingToType = relationships[relationshipsIndex][4]
+                        if ('integer' === foreignKeyPointingToType || 'bigint' === foreignKeyPointingToType) {
                             schema[schemaIndex].attributes[index].unsigned = true
                         }
-                        schema[schemaIndex].attributes[index].type = relationships[relationshipsIndex][4]
+                        schema[schemaIndex].attributes[index].type = foreignKeyPointingToType
 
                         schema[schemaIndex].attributes[index].foreignKey.on.name = relationship[3]  // <<<<<
                         from = true
