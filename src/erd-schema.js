@@ -23,9 +23,10 @@ const ErdSchema = () => {   // louis darwein
     // erBaseName = 'opsporingsberichten'
     // erBaseName = 'nfldb'
     // erBaseName = 'simple'
-    erBaseName = 'politiebureaus'
+    // erBaseName = 'politiebureaus'
     // erBaseName = 'wijkagenten'
     // erBaseName = 'vermisten'
+    erBaseName = 'uuid_test'
     let template = openJson('templates/template.schema')
     const lines = openEr('database/er/' + erBaseName).split('\n')
 
@@ -121,6 +122,9 @@ const ErdSchema = () => {   // louis darwein
                                 break;
                             case 'bigint':
                                 attributeType = 'integer'
+                                break;
+                            case 'uuid':
+                                attributeType = 'uuid'
                                 break;
                             case 'boolean':
                                 attributeType = 'boolean'

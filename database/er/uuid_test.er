@@ -1,0 +1,10 @@
+title {label: "UUID"}
+
+[tos]
+*id {label: "uuid, not null"}
+
+[froms]
+*id {label: "bigint, not null"}
++tos_id
+
+froms *--1 tos
