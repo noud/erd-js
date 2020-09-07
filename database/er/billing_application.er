@@ -1,0 +1,56 @@
+title {label: "billing_application"}
+
+[company]
+*id {label: "bigint"}
+company_name {label: "text"}
+address {label: "text"}
+city {label: "text"}
+state {label: "text"}
+phone {label: "text"}
+mobile {label: "text"}
+pin {label: "text"}
+tin {label: "text"}
+
+[products]
+*ID {label: "bigint"}
+product_name {label: "text"}
+price {label: "float"}
+tax {label: "integer"}
+tax_amount {label: "float"}
+quantity {label: "integer"}
+category {label: "text"}
+unit {label: "text"}
+
+[customers]
+*ID {label: "bigint"}
+name {label: "text"}
+contact {label: "text"}
+area {label: "text"}
+
+[area]
+*area_id {label: "bigint"}
+area_name {label: "text"}
+
+[invoice_detail]
+*id {label: "bigint"}
++Invoice_ID {label: "bigint, null"}
+Area
+Date {label: "date"}
+Amount {label: "float"}
+Tax_amount {label: "float"}
+Customer_name
+
+[invoice_product_detail]
+*id {label: "bigint"}
++Invoice_ID {label: "bigint, null"}
+Product_name
+tax {label: "integer"}
+tax_amount {label: "float"}
+qty {label: "float"}
+unit
+price {label: "float"}
+item_total {label: "float"}
+
+[category]
+*category_id {label: "bigint"}
+category_name {label: "text"}

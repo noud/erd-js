@@ -1,0 +1,42 @@
+title {label: "laravel-invoices-usage"}
+
+[companies]
+*id {label: "bigint"}
+name
+address
+vat
+phone
+# custom_fields
+kvk
+bank_number
+bank_name
+swift
+
+[customers]
+*id {label: "bigint"}
+name
+address
+code
+order_nr
+
+[invoices]
+*id {label: "bigint"}
+party_customer {label: "bigint"}
+party_client {label: "bigint"}
+number
+date {label: "date"}
+remark {label: "text"}
+pay_before
+
+[invoice_lines]
+*id {label: "bigint"}
+invoice_id {label: "bigint"}
+description
+amount
+price {label: "float"}
+tax {label: "integer"}
+tax_amount {label: "float"}
+
+invoice_lines *--1 invoices {label: "invoice"}
+invoices *--1 companies {label: "party_client"}
+invoices *--1 customers {label: "party_customer"}

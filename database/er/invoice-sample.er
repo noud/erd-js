@@ -1,0 +1,8 @@
+title {label: "invoice-sample"}
+
+[products]
+*id {label: "bigint"}
+customer
+product
+price {label: "float", length: "8,2"}
+quantity {label: "float", length: "8,2"}
