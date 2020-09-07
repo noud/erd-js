@@ -38,5 +38,5 @@ tax {label: "integer"}
 tax_amount {label: "float"}
 
 invoice_lines *--1 invoices {label: "invoice"}
-invoices *--1 companies {label: "party_client"}
 invoices *--1 customers {label: "party_customer"}
+invoices *--1 companies {label: "party_client"}
