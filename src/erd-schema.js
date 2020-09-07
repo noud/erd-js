@@ -1,6 +1,6 @@
 const clonedeep = require('lodash.clonedeep');
 const { openEr, openJson, saveJson } = require('./utils');
-const { lastIndexOf } = require('lodash');
+const { lastIndexOf, countBy } = require('lodash');
 
 const createId = () => {
     return Math.random().toString(36).substring(7)
@@ -19,14 +19,21 @@ const unrelaxJSON = string => {
     return JSON.parse(stringJSON)
 };
 
-const ErdSchema = () => {   // louis darwein
-    // erBaseName = 'opsporingsberichten'
-    // erBaseName = 'nfldb'
+const ErdSchema = () => {
     // erBaseName = 'simple'
+    // erBaseName = 'nfldb'
+    //
     // erBaseName = 'politiebureaus'
     // erBaseName = 'wijkagenten'
+    // erBaseName = 'opsporingsberichten'
     // erBaseName = 'vermisten'
-    erBaseName = 'uuid_test'
+    //
+    // erBaseName = 'uuid_test'
+    //
+    // erBaseName = 'invoice-sample'
+    // erBaseName = 'billing_application'
+    erBaseName = 'laravel-invoices-usage'
+    //
     let template = openJson('templates/template.schema')
     const lines = openEr('database/er/' + erBaseName).split('\n')
 
@@ -212,6 +219,12 @@ const ErdSchema = () => {   // louis darwein
             }
         }
     });
+
+    if (0 === schema.length) {
+        if (null != table) {
+            schema.push(table)
+        }
+    }
 
     relationships.map((relationship, index) => {
     relationshipsIndex = index
