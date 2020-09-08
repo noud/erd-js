@@ -32,10 +32,17 @@ const ErdSchema = () => {
     //
     // erBaseName = 'invoice-sample'
     // erBaseName = 'billing_application'
-    erBaseName = 'laravel-invoices-usage'
+    // erBaseName = 'laravel-invoices-usage'
+    // erBaseName = 'billing'
+    //
+    // erBaseName = 'database/er/billing/laravel'
+    // erBaseName = 'database/er/billing/gis'
+    // erBaseName = 'database/er/billing/organization'
+    // erBaseName = 'database/er/billing/saas'
+    erBaseName = 'database/er/billing/billing'
     //
     let template = openJson('templates/template.schema')
-    const lines = openEr('database/er/' + erBaseName).split('\n')
+    const lines = openEr('' + erBaseName).split('\n')
 
     schema = [];
     table = null;
@@ -67,6 +74,7 @@ const ErdSchema = () => {
                     case '#eee0a0':
                         tableBgColor += 'purple'    // orange
                         break;
+                    case 'green':
                     case '#d0e0d0':
                         tableBgColor += 'green'
                         break;
@@ -104,11 +112,11 @@ const ErdSchema = () => {
                 attributType,
                 attributLabel
             ])
-        } else {
+        } else if ('#' !== line.charAt(0)) {
             if (null != table) {
                 if (0 != line.length) {
 
-                    nullable = true;
+                    nullable = false;
                     unsigned = false;
 
                     attributeType = 'string'
@@ -128,7 +136,7 @@ const ErdSchema = () => {
                                 attributeType = 'integer'
                                 break;
                             case 'bigint':
-                                attributeType = 'integer'
+                                attributeType = 'biginteger'
                                 break;
                             case 'uuid':
                                 attributeType = 'uuid'
@@ -169,12 +177,13 @@ const ErdSchema = () => {
                             attributeType = 'string'
                         }
                         
-                        if ('not null' === attributLabelArray[1]) {
-                            nullable = false
+                        if ('null' === attributLabelArray[1]) {
+                            nullable = false    // @todo should be true?
                         }
                     }
 
-                    line = line.replace(/^\s+|\s+$/g, '')  // leading and tailing spaces
+                    line = line.replace(/#(.*)$/g,'')          // remove comment at end of line
+                    line = line.replace(/^\s+|\s+$/g, '')   // leading and tailing spaces
                     line = removeQuotes(line)
                     index = fk = false
                     if ('*' === line.charAt(0)) {
@@ -297,7 +306,7 @@ const ErdSchema = () => {
 
                         // @todo combined keys
                         foreignKeyPointingToType = relationships[relationshipsIndex][4]
-                        if ('integer' === foreignKeyPointingToType || 'bigint' === foreignKeyPointingToType) {
+                        if ('integer' === foreignKeyPointingToType || 'biginteger' === foreignKeyPointingToType) {
                             schema[schemaIndex].attributes[index].unsigned = true
                         }
                         schema[schemaIndex].attributes[index].type = foreignKeyPointingToType
