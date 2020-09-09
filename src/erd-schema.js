@@ -176,13 +176,12 @@ const ErdSchema = () => {
                         if ('' === attributeType) {
                             attributeType = 'string'
                         }
-                        
                         if ('null' === attributLabelArray[1]) {
-                            nullable = false    // @todo should be true?
+                            nullable = true
                         }
                     }
 
-                    line = line.replace(/#(.*)$/g,'')          // remove comment at end of line
+                    line = line.replace(/#(.*)$/g,'')       // remove comment at end of line
                     line = line.replace(/^\s+|\s+$/g, '')   // leading and tailing spaces
                     line = removeQuotes(line)
                     index = fk = false
