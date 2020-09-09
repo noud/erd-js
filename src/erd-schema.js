@@ -135,6 +135,9 @@ const ErdSchema = () => {
                             case 'smallint':
                                 attributeType = 'integer'
                                 break;
+                            case 'integer':
+                                attributeType = 'integer'
+                                break;
                             case 'bigint':
                                 attributeType = 'biginteger'
                                 break;
