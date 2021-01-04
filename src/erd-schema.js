@@ -40,6 +40,7 @@ const ErdSchema = () => {
     // erBaseName = 'database/er/billing/organization'
     // erBaseName = 'database/er/billing/saas'
     erBaseName = 'database/er/billing/billing'
+    erBaseName = 'database/er/books-reviews'
     //
     let template = openJson('templates/template.schema')
     const lines = openEr('' + erBaseName).split('\n')
@@ -266,6 +267,9 @@ const ErdSchema = () => {
 
                     if ('game' === relationship[0]) {
                         possibleFfNamePart = 'gsis'
+                    } else if ('books' === relationship[3]) {
+                        // @todo inflector books => book
+                        possibleFfNamePart = 'book_id'
                     } else {
                         // @todo check
                         // possibleFfNamePart = relationship[3].toLowerCase().replace(" ", "_")
