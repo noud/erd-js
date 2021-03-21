@@ -1,0 +1,29 @@
+title {label: "simple uuid"}
+
+# Entities are declared in '[' ... ']'. All attributes after the entity header
+# up until the end of the file (or the next entity declaration) correspond
+# to this entity.
+[Person] {bgcolor: "#d0e0d0"}
+*id {label: "bigint, not null"}
+ name
+  height
+  weight
+'birth date'
++birth_place_id {label: "uuid, not null"}
+
+[`BirthPlace`] {bgcolor: "#eee0a0"}
+*id {label: "uuid, not null"}
+'birth city'
+'birth state'
+"birth country"
+
+# Each relationship must be between exactly two entities, which need not
+# be distinct. Each entity in the relationship has exactly one of four
+# possible cardinalities:
+#
+# Cardinality    Syntax
+# 0 or 1         ?
+# exactly 1      1
+# 0 or more      *
+# 1 or more      +
+Person *--1 `BirthPlace` {label: "birth_place_id"}
