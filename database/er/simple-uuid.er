@@ -3,7 +3,7 @@ title {label: "simple uuid"}
 # Entities are declared in '[' ... ']'. All attributes after the entity header
 # up until the end of the file (or the next entity declaration) correspond
 # to this entity.
-[Person] {bgcolor: "#d0e0d0"}
+[Person] {bgcolor: "#8e44ad"}
 *id {label: "bigint, not null"}
  name
   height
@@ -11,7 +11,7 @@ title {label: "simple uuid"}
 'birth date'
 +birth_place_id {label: "uuid, not null"}
 
-[`BirthPlace`] {bgcolor: "#eee0a0"}
+[`BirthPlace`] {bgcolor: "#16a085"}
 *id {label: "uuid, not null"}
 'birth city'
 'birth state'

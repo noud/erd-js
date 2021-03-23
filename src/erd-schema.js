@@ -1,5 +1,6 @@
 const clonedeep = require('lodash.clonedeep');
 const { openEr, openJson, saveJson } = require('./utils');
+const { colorCodeToTableBgColorName } = require('./colors');
 const { lastIndexOf, countBy } = require('lodash');
 
 const createId = () => {
@@ -21,7 +22,7 @@ const unrelaxJSON = string => {
 
 const ErdSchema = () => {
     // erBaseName = 'simple'
-    // erBaseName = 'simple-uuid'
+    erBaseName = 'simple-uuid'
     // erBaseName = 'nfldb'
     //
     // erBaseName = 'politiebureaus'
@@ -40,8 +41,8 @@ const ErdSchema = () => {
     // erBaseName = 'database/er/billing/gis'
     // erBaseName = 'database/er/billing/organization'
     // erBaseName = 'database/er/billing/saas'
-    erBaseName = 'database/er/billing/billing'
-    erBaseName = 'database/er/books-reviews'
+    // erBaseName = 'database/er/billing/billing'
+    // erBaseName = 'database/er/books-reviews'
     //
     let template = openJson('templates/template.schema')
     const lines = openEr('database/er/' + erBaseName).split('\n')
@@ -68,24 +69,7 @@ const ErdSchema = () => {
             if (-1 !== line.indexOf(' {')) {
                 let tableAttributesString = line.match(regExpCurlyBrackets)
                 tableBgColorCode = unrelaxJSON(tableAttributesString[0]).bgcolor
-                tableBgColor = 'table-header-'
-                switch(tableBgColorCode) {
-                    case '#fbfbdb':
-                        tableBgColor += 'dark-blue' // yellow
-                        break;
-                    case '#eee0a0':
-                        tableBgColor += 'purple'    // orange
-                        break;
-                    case 'green':
-                    case '#d0e0d0':
-                        tableBgColor += 'green'
-                        break;
-                    case '#fcecec':
-                        tableBgColor += 'red'
-                        break;
-                    default:
-                        tableBgColor += 'blue'
-                }
+                tableBgColor = colorCodeToTableBgColorName(tableBgColorCode);
             }
 
             table = {
