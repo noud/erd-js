@@ -16,7 +16,7 @@ const openJson = (basename) => {
 exports.openJson = openJson;
 
 const saveJson = (basename, jsonContent) => {
-    fs.writeFile('./' + basename + '.json', JSON.stringify(jsonContent), 'utf8', function (err) {
+    fs.writeFile('./database/schema/' + basename + '.json', JSON.stringify(jsonContent), 'utf8', function (err) {
         if (err) {
             return console.log(err);
         }
