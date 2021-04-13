@@ -5,18 +5,21 @@ const colorCodeToName = (colorCode) => {
             colorName += 'maroon'
             break;
         case '#c0392b':
+        case '#fcecec':
             colorName += 'red'
             break;
         case '#ffa500':
             colorName += 'orange'
             break;
         case '#ffff00':
+        case '#eee0a0':
             colorName += 'yellow'
             break;
         case '#808000':
             colorName += 'olive'
             break;
         case '#16a085':
+        case '#d0e0d0':
             colorName += 'green'
             break;
         case '#8e44ad':
@@ -47,13 +50,27 @@ const colorCodeToName = (colorCode) => {
             colorName += 'gray'
             break;
         case '#c0c0c0':
+        case '#ececfc':
             colorName += 'silver'
             break;
         case '#ffffff':
             colorName += 'white'
             break;
+        // others
+        // case '#fcecec':
+        //     colorName += 'linen'
+        //     break;
+        // case '#eee0a0':
+        //     colorName += 'primrose'
+        //     break;
+        // case '#d0e0d0':
+        //     colorName += 'tasman'
+        //     break;
+        // case '#ececfc':
+        //     colorName += 'selago'
+        //     break;
         default:
-            colorName += 'blue'
+            colorName += 'white'
     }
     return colorName
 };
