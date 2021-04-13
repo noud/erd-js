@@ -21,29 +21,10 @@ const unrelaxJSON = string => {
 };
 
 const ErdSchema = () => {
-    // erBaseName = 'simple'
-    erBaseName = 'simple-uuid'
-    // erBaseName = 'nfldb'
-    //
-    // erBaseName = 'politiebureaus'
-    // erBaseName = 'wijkagenten'
-    // erBaseName = 'opsporingsberichten'
-    // erBaseName = 'vermisten'
-    //
-    // erBaseName = 'uuid_test'
-    //
-    // erBaseName = 'invoice-sample'
-    // erBaseName = 'billing_application'
-    // erBaseName = 'laravel-invoices-usage'
-    // erBaseName = 'billing'
-    //
-    // erBaseName = 'database/er/billing/laravel'
-    // erBaseName = 'database/er/billing/gis'
-    // erBaseName = 'database/er/billing/organization'
-    // erBaseName = 'database/er/billing/saas'
-    // erBaseName = 'database/er/billing/billing'
-    // erBaseName = 'database/er/books-reviews'
-    //
+    var myArgs = process.argv.slice(2);
+    var erBaseName = myArgs.slice(0,1);
+    // console.log(erBaseName);
+
     let template = openJson('templates/template.schema')
     const lines = openEr('database/er/' + erBaseName).split('\n')
 

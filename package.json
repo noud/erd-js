@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "transform": "node src/index.js"
+    "transform": "node src/index.js nouns.mvc"
   },
   "repository": {
     "type": "git",
