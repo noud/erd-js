@@ -1,0 +1,138 @@
+title {label: "nouns"}
+
+# tables
+
+## linguistic
+
+### rules
+
+[rules] {bgcolor: "#fcecec"}
+*id {label: "int, not null"}
+name {label: "string, not null"}
+inflector_irregular {label: "bool, not null"}
+#to_singular {label: "text, null"}
+#to_plural {label: "text, null"}
+
+#### rule results
+
+[results] {bgcolor: "#fcecec"}
+*id {label: "int, not null"}
++rule_id {label: "int, not null"}
+empty {label: "bool, null"}
++add_id {label: "int, null"}
++replace_id {label: "int, null"}
+
+[adds] {bgcolor: "#fcecec"}
+*id {label: "int, not null"}
+add
+
+[replaces] {bgcolor: "#fcecec"}
+*id {label: "int, not null"}
+remove
+add
+regex {label: "bool, null"}
+
+### nouns
+
+[adjective_nouns] {bgcolor: "#d0e0d0"}
+*id {label: "bigint, not null"}
++adjective_id {label: "bigint, not null"}
++polymorphic_noun_id {label: "bigint, not null"}
+
+[composition_nouns] {bgcolor: "#d0e0d0"}
+*id {label: "bigint, not null"}
++polymorphic_noun_id {label: "bigint, not null"}
++non_composition_proxy_noun_id {label: "bigint, not null"}
+
+[irregular_nouns] {bgcolor: "#d0e0d0"}
+*id {label: "int, not null"}
+singular {label: "string, null"}
+plural {label: "string, null"}
++rule_id {label: "int, null"}
+
+[normal_nouns] {bgcolor: "#d0e0d0"}
+*id {label: "bigint, not null"}
+word {label: "string, not null"}
++rule_id {label: "int, not null"}
+irregular {label: "bool, not null"}
+
+### adjectives
+
+[adjectives]
+*id {label: "bigint, not null"}
+word {label: "string, not null"}
+
+## decorator
+
+[references]
+*id {label: "int, not null"}
+url {label: "string, not null"}
+
+# pivot tables
+
+[rule_reference]
++rule_id {label: "int, not null"}
++reference_id {label: "int, not null"}
+
+[normal_noun_reference]
++normal_noun_id {label: "bigint, not null"}
++reference_id {label: "int, not null"}
+
+[irregular_noun_reference]
++irregular_noun_id {label: "int, not null"}
++reference_id {label: "int, not null"}
+
+[composition_noun_reference]
++composition_noun_id {label: "int, not null"}
++reference_id {label: "int, not null"}
+
+[irregular_proxy_noun_reference]
++irregular_proxy_noun_id {label: "int, not null"}
++reference_id {label: "int, not null"}
+
+# polymorphic tables
+
+[non_composition_proxy_nouns] {bgcolor: "#eee0a0"}
+*id {label: "bigint, not null"}
++polymorphic_noun_id {label: "bigint, not null"}
+
+[irregular_proxy_nouns] {bgcolor: "#eee0a0"}
+*id {label: "bigint, not null"}
++polymorphic_noun_id {label: "bigint, not null"}
+
+[polymorphic_nouns] {bgcolor: "#eee0a0"}
+*id {label: "bigint, not null"}
+noon_type {label: "enum"}
+noun_id {label: "bigint, not null"}
+
+# relations
+
+results *--1 rules {label: "rule"}
+results 1--1 adds {label: "add"}
+results 1--1 replaces {label: "replace"}
+
+adjective_nouns 1--1 adjectives {label: "adjective"}
+adjective_nouns 1--1 polymorphic_nouns {label: "polymorphic_noun"}
+composition_nouns 1--1 polymorphic_nouns {label: "polymorphic_noun"}
+composition_nouns 1--1 non_composition_proxy_nouns {label: "non_composition_proxy_noun"}
+normal_nouns 1--1 rules {label: "rule"}
+irregular_nouns 1--1 rules {label: "rule"}
+
+# pivot relations
+
+rule_reference *--1 rules {label: "rule"}
+rule_reference *--1 references {label: "reference"}
+normal_noun_reference *--1 normal_nouns {label: "normal_noun"}
+normal_noun_reference *--1 references {label: "reference"}
+irregular_noun_reference *--1 irregular_nouns {label: "irregular_noun"}
+irregular_noun_reference *--1 references {label: "reference"}
+composition_noun_reference *--1 composition_nouns {label: "composition_noun"}
+composition_noun_reference *--1 references {label: "reference"}
+irregular_proxy_noun_reference *--1 irregular_proxy_nouns {label: "irregular_proxy_noun"}
+irregular_proxy_noun_reference *--1 references {label: "reference"}
+
+# polymorphic relations
+
+non_composition_proxy_nouns 1--1 polymorphic_nouns {label: "polymorphic_noun"}
+irregular_proxy_nouns 1--1 polymorphic_nouns {label: "polymorphic_noun"}
+#polymorphic_nouns 1--1 non_composition_proxy_nouns {label: "non_composition_proxy_noun"}
