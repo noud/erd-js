@@ -32,7 +32,7 @@
   "homepage": "https://github.com/noud/erd-js",
   "dependencies": {
     "fs": "^0.0.1-security",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "lodash.clonedeep": "^4.5.0"
   }
 }
