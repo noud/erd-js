@@ -114,7 +114,13 @@ const ErdSchema = () => {
                             case 'boolean':
                                 attributeType = 'boolean'
                                 break;
-                            case 'utctime':
+                            case 'timestamp':
+                                attributeType = 'timestamp'
+                                break;
+                            case 'datetime':
+                                attributeType = 'datetime'
+                                break;
+                           case 'utctime':
                                 attributeType = 'timestamp'
                                 break;
                             // nfl related
@@ -247,8 +253,9 @@ const ErdSchema = () => {
                     if (relationship[5]) {
                         possibleFfNamePart = relationship[5]
                     }
+                    var name = relationship[0].toLowerCase().slice(0, -1);
 
-                    if (relationship[0] + '_id' === attribute.name ||
+                    if (name + '_id' === attribute.name ||
                         possibleFfNamePart + '_id' === attribute.name ||
                         possibleFfNamePart === attribute.name
                     ) {
